@@ -16,6 +16,10 @@ public class App {
 		return users;
 	}
 	
+	static public void setUser(int i, User u) {
+		users.set(i, u);
+	}
+	
 	static public void addUser(User user) {
 		users.add(user);
 	}

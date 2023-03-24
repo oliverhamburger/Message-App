@@ -71,9 +71,10 @@ public class LoginView extends JFrame {
 					curr = users.get(i);
 					if((curr.getUserName().equals(userName.getText())) && (curr.getPassword().equals(password.getText()))) {
 						curr.setLoggedin(true);
-						App.getUsers().set(i, curr);
+						App.setUser(i, curr);
 						//load login page passing in the user object to load their data to the view
-						System.out.println(userName.getText() + "is logged in");
+						System.out.println(userName.getText() + " is logged in");
+						System.out.println(App.getUsers().get(0).getLoggedIn());
 					}
 				}
 				//username and password is incorrect, ask them to try again

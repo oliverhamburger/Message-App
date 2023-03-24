@@ -64,7 +64,7 @@ public class CreateAccount extends JFrame {
 		JButton createAccount = new JButton("Create Account");
 		createAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//verify credentials, if verified load the login view to login ViewControler.showLoginView()
+				//create user with the given info and add that user to users Arraylist in App, then load the login view to login ViewControler.showLoginView()
 			}
 		});
 		createAccount.setBounds(112, 206, 181, 23);

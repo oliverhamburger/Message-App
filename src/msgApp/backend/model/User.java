@@ -12,6 +12,7 @@ public class User {
 		messages = new ArrayList<Message>();
 		this.userName = userName;
 		this.password = password;
+		this.loggedIn = false;
 	}
 	
 	public String getUserName() {
@@ -21,6 +22,11 @@ public class User {
 	public String getPassword() {
 		return this.password;
 	}
+	
+	public boolean getLoggedIn() {
+		return this.loggedIn;
+	}
+	
 	
 	public void setLoggedin(boolean inOrOut) {
 		this.loggedIn = inOrOut;
