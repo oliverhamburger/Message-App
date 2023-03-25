@@ -1,5 +1,5 @@
-#Message App
+# Message App
 Allows users to login with credentials to create and view users messages
 
-##Development
+## Development
 Java Swing application developed in Eclipse
