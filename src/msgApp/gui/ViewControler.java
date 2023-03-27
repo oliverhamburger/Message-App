@@ -14,8 +14,9 @@ public class ViewControler extends JFrame {
 	private JPanel contentPane;
 	
 	static private LoginView loginView = new LoginView();
-	static private CreateAccount createAccountView = new CreateAccount();
-	static private AccountLoggedIn accountLoggedInView;
+	static private CreateAccountView createAccountView = new CreateAccountView();
+	static private CreateMessageView createMessageView;
+	static private AccountLoggedInView accountLoggedInView;
 	
 	public static void showCreateAccountView() {
 		createAccountView.setVisible(true);
@@ -31,9 +32,18 @@ public class ViewControler extends JFrame {
 	}
 	
 	public static void showAccountLoggedInView(User user) {
-		accountLoggedInView = new AccountLoggedIn(user);
+		accountLoggedInView = new AccountLoggedInView(user);
 		accountLoggedInView.setVisible(true);
 		loginView.dispose();
+		if(createMessageView != null) {
+			createMessageView.dispose();
+		}
+	}
+	
+	public static void showCreateMessageView(User user) {
+		createMessageView = new CreateMessageView(user);
+		createMessageView.setVisible(true);
+		accountLoggedInView.dispose();
 	}
 
 }

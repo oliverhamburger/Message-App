@@ -17,13 +17,13 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
 
-public class AccountLoggedIn extends JFrame {
+public class AccountLoggedInView extends JFrame {
 
 	private JPanel contentPane;
 	
 	private User currUser;
 	
-	public AccountLoggedIn(User user) {
+	public AccountLoggedInView(User user) {
 		this.currUser = user;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -56,6 +56,7 @@ public class AccountLoggedIn extends JFrame {
 						App.displayData();
 					}
 				}
+				App.loadDataToDataStore();
 			}
 		});
 		logoutButton.setBounds(10, 227, 89, 23);
@@ -66,8 +67,21 @@ public class AccountLoggedIn extends JFrame {
 		feed.setBounds(10, 36, 414, 171);
 		contentPane.add(feed);
 		
+		feed.setText(App.getFeed());
+		
 		JScrollPane scrollPane = new JScrollPane(feed);
 		scrollPane.setBounds(10, 36, 414, 171);
 		contentPane.add(scrollPane);
+		
+		JButton createMessage = new JButton("Add Message");
+		createMessage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewControler.showCreateMessageView(user);
+				//reset feed text so the feed is not duplicated
+				feed.setText("");
+			}
+		});
+		createMessage.setBounds(275, 227, 137, 23);
+		contentPane.add(createMessage);
 	}
 }

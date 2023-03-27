@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class CreateAccount extends JFrame {
+public class CreateAccountView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField username;
@@ -25,7 +25,7 @@ public class CreateAccount extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CreateAccount() {
+	public CreateAccountView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

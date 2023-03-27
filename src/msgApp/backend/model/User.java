@@ -27,9 +27,16 @@ public class User {
 		return this.loggedIn;
 	}
 	
+	public ArrayList<Message> getMessages(){
+		return this.messages;
+	}
 	
 	public void setLoggedin(boolean inOrOut) {
 		this.loggedIn = inOrOut;
+	}
+	
+	public void addMessage(Message mesage) {
+		this.messages.add(mesage);
 	}
 	
 	@Override
@@ -43,7 +50,7 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "Username: " + this.userName + "\nLoggedIn: " + Boolean.toString(this.loggedIn);
+		return "Username: " + this.userName + "\nLoggedIn: " + Boolean.toString(this.loggedIn) + "\nNumber of messages: " + Integer.toString(this.messages.size()) + "\n\n";
 	}
 
 }

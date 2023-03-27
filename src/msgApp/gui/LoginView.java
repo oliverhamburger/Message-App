@@ -12,6 +12,8 @@ import msgApp.backend.model.User;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -103,7 +105,6 @@ public class LoginView extends JFrame {
 		
 		CreateAccountButton.setBounds(242, 212, 135, 23);
 		contentPane.add(CreateAccountButton);
-		
-		
+	
 	}
 }
