@@ -6,26 +6,32 @@ import msgApp.backend.model.User;
 
 public class App {
 	
-	static private ArrayList<User> users = new ArrayList<User>();
+	private static ArrayList<User> users = new ArrayList<User>();
 	
-	static public void loadDataFromDataStore() {
+	public static void loadDataFromDataStore() {
 		//load the data from userData.txt into users arraylist
 	}
 	
-	static public ArrayList<User> getUsers(){
+	public static ArrayList<User> getUsers(){
 		return users;
 	}
 	
-	static public void setUser(int i, User u) {
+	public static void setUser(int i, User u) {
 		users.set(i, u);
 	}
 	
-	static public void addUser(User user) {
+	public static void addUser(User user) {
 		users.add(user);
 	}
 	
-	static public void loadDataToDataStore() {
+	public static void loadDataToDataStore() {
 		//load the users arraylist into userData.txt
+	}
+	
+	public static void displayData() {
+		for(User user: users) {
+			System.out.println(user);
+		}
 	}
 	
 }

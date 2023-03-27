@@ -34,15 +34,6 @@ public class LoginView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton CreateAccountButton = new JButton("Create Account");
-		CreateAccountButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ViewControler.showCreateAccountView();
-			}
-		});
-		CreateAccountButton.setBounds(242, 212, 135, 23);
-		contentPane.add(CreateAccountButton);
-		
 		password = new JTextField();
 		password.setBounds(177, 102, 167, 20);
 		contentPane.add(password);
@@ -61,27 +52,58 @@ public class LoginView extends JFrame {
 		contentPane.add(userName);
 		userName.setColumns(10);
 		
+		JLabel loginFeedback = new JLabel("");
+		loginFeedback.setBounds(54, 158, 327, 14);
+		contentPane.add(loginFeedback);
 		
 		JButton LoginButton = new JButton("Login");
+		LoginButton.setBounds(78, 212, 104, 23);
+		contentPane.add(LoginButton);
 		LoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean loginSuccessfull = false;
+				
+				/*loop through the users in App.java and see if the username an password combo given by the user matches one in the database
+				 * This should be refactored into a single function call from App.java that passes in username and password combo
+				 */
 				ArrayList<User> users = App.getUsers();
 				User curr;
 				for(int i = 0; i < users.size(); i++) {
 					curr = users.get(i);
 					if((curr.getUserName().equals(userName.getText())) && (curr.getPassword().equals(password.getText()))) {
+						loginSuccessfull = true;
 						curr.setLoggedin(true);
 						App.setUser(i, curr);
-						//load login page passing in the user object to load their data to the view
-						System.out.println(userName.getText() + " is logged in");
-						System.out.println(App.getUsers().get(0).getLoggedIn());
+						//Loads user login page with their user data displayed
+						ViewControler.showAccountLoggedInView(curr);
+						
+						//For debuging
+						App.displayData();
 					}
 				}
-				//username and password is incorrect, ask them to try again
-				
+				if(loginSuccessfull == false) {
+					//username and password is incorrect, ask them to try again
+					loginFeedback.setText("Username and password combo is incorrect, try again");
+				}else{
+					//username and password was correct, reset the label for the next sign in when the user is logged out
+					loginFeedback.setText("");
+				}
+				//For debuging
+				App.displayData();
 			}
 		});
-		LoginButton.setBounds(78, 212, 104, 23);
-		contentPane.add(LoginButton);
+		
+		JButton CreateAccountButton = new JButton("Create Account");
+		CreateAccountButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loginFeedback.setText("");
+				ViewControler.showCreateAccountView();
+			}
+		});
+		
+		CreateAccountButton.setBounds(242, 212, 135, 23);
+		contentPane.add(CreateAccountButton);
+		
+		
 	}
 }
