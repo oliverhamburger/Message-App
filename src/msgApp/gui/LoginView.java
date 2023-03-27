@@ -78,9 +78,6 @@ public class LoginView extends JFrame {
 						App.setUser(i, curr);
 						//Loads user login page with their user data displayed
 						ViewControler.showAccountLoggedInView(curr);
-						
-						//For debuging
-						App.displayData();
 					}
 				}
 				if(loginSuccessfull == false) {
@@ -90,8 +87,6 @@ public class LoginView extends JFrame {
 					//username and password was correct, reset the label for the next sign in when the user is logged out
 					loginFeedback.setText("");
 				}
-				//For debuging
-				App.displayData();
 			}
 		});
 		

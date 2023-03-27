@@ -51,9 +51,6 @@ public class AccountLoggedInView extends JFrame {
 						curr.setLoggedin(false);
 						App.setUser(i, curr);
 						ViewControler.showLoginView();
-						
-						//For debuging
-						App.displayData();
 					}
 				}
 				App.loadDataToDataStore();

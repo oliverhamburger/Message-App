@@ -1,5 +1,10 @@
 package msgApp.app;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import msgApp.backend.model.Message;
@@ -11,7 +16,29 @@ public class App {
 	private static ArrayList<Message> allMessages = new ArrayList<Message>();
 	
 	public static void loadDataFromDataStore() {
-		//load the data from userData.txt into users arraylist
+		//read the data from userData.txt into users arraylist
+		try{
+		    FileInputStream readData = new FileInputStream("src/msgApp/data/userData.txt");
+		    ObjectInputStream readStream = new ObjectInputStream(readData);
+
+		    users = (ArrayList<User>) readStream.readObject();
+		    
+		    readStream.close();
+		}catch (Exception e) {
+		    e.printStackTrace();
+		}
+		
+		//read the data from messages.txt into messages arraylist
+		try{
+		    FileInputStream readData = new FileInputStream("src/msgApp/data/messages.txt");
+		    ObjectInputStream readStream = new ObjectInputStream(readData);
+
+		    allMessages = (ArrayList<Message>) readStream.readObject();
+		    
+		    readStream.close();
+		}catch (Exception e) {
+		    e.printStackTrace();
+		}
 	}
 	
 	public static ArrayList<User> getUsers(){
@@ -27,8 +54,31 @@ public class App {
 	}
 	
 	public static void loadDataToDataStore() {
-		//load the users arraylist into userData.txt
+		//write users data into userData.txt
+		try{
+		    FileOutputStream writeData = new FileOutputStream("src/msgApp/data/userData.txt");
+		    ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
+
+		    writeStream.writeObject(users);
+		    writeStream.flush();
+		    writeStream.close();
+
+		}catch (IOException e) {
+		    e.printStackTrace();
+		}
 		
+		//write message data into messages.txt
+		try{
+		    FileOutputStream writeData = new FileOutputStream("src/msgApp/data/messages.txt");
+		    ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
+
+		    writeStream.writeObject(allMessages);
+		    writeStream.flush();
+		    writeStream.close();
+
+		}catch (IOException e) {
+		    e.printStackTrace();
+		}
 	}
 	
 	public static String getFeed() {

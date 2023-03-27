@@ -46,12 +46,8 @@ public class CreateMessageView extends JFrame {
 					if(curr.equals(user)) {
 						App.setUser(i, curr);
 						ViewControler.showAccountLoggedInView(user);
-						
-						//For debuging
-						App.displayData();
 					}
 				}
-				//System.out.println(App.getUsers().get(0).getMessages().get(0).getBody());
 			}
 		});
 		addMessage.setBounds(10, 227, 155, 23);

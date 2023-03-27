@@ -61,9 +61,6 @@ public class CreateAccountView extends JFrame {
 				User newUser = new User(username.getText(), password.getText());
 				App.addUser(newUser);
 				ViewControler.showLoginView();
-				
-				//for debuging
-				App.displayData();
 			}
 		});
 		createAccount.setBounds(112, 206, 181, 23);
