@@ -43,7 +43,7 @@ public class User implements Serializable{
 	@Override
 	public boolean equals(Object o) {
 		User other = (User) o;
-		if((this.userName == other.userName) && (this.password == other.password)) {
+		if((this.userName.equals(other.userName)) && (this.password.equals(other.password))) {
 			return true;
 		}
 		return false;

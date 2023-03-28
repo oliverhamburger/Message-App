@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollPane;
+import javax.swing.JProgressBar;
 
 public class AccountLoggedInView extends JFrame {
 
@@ -55,6 +56,8 @@ public class AccountLoggedInView extends JFrame {
 						ViewControler.showLoginView();
 					}
 				}
+				//load the data to the datastore
+				App.loadDataToDataStore("src/msgApp/data/userData.txt", "src/msgApp/data/messages.txt");
 			}
 		});
 		logoutButton.setBounds(10, 227, 89, 23);
@@ -81,5 +84,16 @@ public class AccountLoggedInView extends JFrame {
 		});
 		createMessage.setBounds(275, 227, 137, 23);
 		contentPane.add(createMessage);
+		
+		JButton refresh = new JButton("Refresh");
+		refresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//load the data to the datastore
+				App.loadDataFromDataStore("src/msgApp/data/userData.txt", "src/msgApp/data/messages.txt");
+				feed.setText(App.getFeed());
+			}
+		});
+		refresh.setBounds(144, 227, 89, 23);
+		contentPane.add(refresh);
 	}
 }

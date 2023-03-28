@@ -7,11 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import msgApp.app.App;
 import msgApp.backend.model.User;
 
 public class ViewControler extends JFrame {
-
-	private JPanel contentPane;
 	
 	static private LoginView loginView = new LoginView();
 	static private CreateAccountView createAccountView = new CreateAccountView();

@@ -47,6 +47,7 @@ public class CreateMessageView extends JFrame {
 				
 				//update the user with the newly added message to the data store
 				ArrayList<User> users = App.getUsers();
+				User lala = user;
 				User curr;
 				for(int i = 0; i < users.size(); i++) {
 					curr = users.get(i);

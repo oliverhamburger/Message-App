@@ -64,6 +64,7 @@ public class LoginView extends JFrame {
 		LoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean loginSuccessfull = false;
+				User userToLogin = null;
 				
 				/*loop through the users in App.java and see if the username an password combo given by the user matches one in the database
 				 * This should be refactored into a single function call from App.java that passes in username and password combo
@@ -72,21 +73,30 @@ public class LoginView extends JFrame {
 				User curr;
 				for(int i = 0; i < users.size(); i++) {
 					curr = users.get(i);
-					if((curr.getUserName().equals(userName.getText())) && (curr.getPassword().equals(password.getText()))) {
+					
+					//if a user is already logged in, log them out and update
+					if(curr.getLoggedIn()) {
+						curr.setLoggedin(false);
+						App.setUser(i, curr);
+					}else if((curr.getUserName().equals(userName.getText())) && (curr.getPassword().equals(password.getText()))) {
 						loginSuccessfull = true;
+						userToLogin = curr;
 						curr.setLoggedin(true);
 						App.setUser(i, curr);
-						//Loads user login page with their user data displayed
-						ViewControler.showAccountLoggedInView(curr);
 					}
 				}
-				if(loginSuccessfull == false) {
+				if(!loginSuccessfull) {
 					//username and password is incorrect, ask them to try again
 					loginFeedback.setText("Username and password combo is incorrect, try again");
 				}else{
 					//username and password was correct, reset the label for the next sign in when the user is logged out
 					loginFeedback.setText("");
+					//Loads user login page with their user data displayed
+					ViewControler.showAccountLoggedInView(userToLogin);
 				}
+				
+				//load the data to the datastore, do so to update user login status if it was changed
+				App.loadDataToDataStore("src/msgApp/data/userData.txt", "src/msgApp/data/messages.txt");
 			}
 		});
 		
