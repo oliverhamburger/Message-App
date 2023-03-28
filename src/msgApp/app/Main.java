@@ -7,7 +7,7 @@ import msgApp.gui.ViewControler;
 
 public class Main {
 	public static void main(String[] args) {
-		App.loadDataFromDataStore();
+		App.loadDataFromDataStore("src/msgApp/data/userData.txt", "src/msgApp/data/messages.txt");
 		ViewControler.showLoginView();
 
 

@@ -53,7 +53,7 @@ public class AccountLoggedInView extends JFrame {
 						ViewControler.showLoginView();
 					}
 				}
-				App.loadDataToDataStore();
+				App.loadDataToDataStore("src/msgApp/data/userData.txt", "src/msgApp/data/messages.txt");
 			}
 		});
 		logoutButton.setBounds(10, 227, 89, 23);

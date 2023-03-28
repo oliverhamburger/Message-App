@@ -15,10 +15,10 @@ public class App {
 	private static ArrayList<User> users = new ArrayList<User>();
 	private static ArrayList<Message> allMessages = new ArrayList<Message>();
 	
-	public static void loadDataFromDataStore() {
+	public static void loadDataFromDataStore(String userDataPath, String messagesPath) {
 		//read the data from userData.txt into users arraylist
 		try{
-		    FileInputStream readData = new FileInputStream("src/msgApp/data/userData.txt");
+		    FileInputStream readData = new FileInputStream(userDataPath);
 		    ObjectInputStream readStream = new ObjectInputStream(readData);
 
 		    users = (ArrayList<User>) readStream.readObject();
@@ -30,7 +30,7 @@ public class App {
 		
 		//read the data from messages.txt into messages arraylist
 		try{
-		    FileInputStream readData = new FileInputStream("src/msgApp/data/messages.txt");
+		    FileInputStream readData = new FileInputStream(messagesPath);
 		    ObjectInputStream readStream = new ObjectInputStream(readData);
 
 		    allMessages = (ArrayList<Message>) readStream.readObject();
@@ -45,6 +45,10 @@ public class App {
 		return users;
 	}
 	
+	public static ArrayList<Message> getMessages(){
+		return allMessages;
+	} 
+	
 	public static void setUser(int i, User u) {
 		users.set(i, u);
 	}
@@ -53,10 +57,14 @@ public class App {
 		users.add(user);
 	}
 	
-	public static void loadDataToDataStore() {
+	public static void addMessage(Message m) {
+		allMessages.add(m);
+	}
+	
+	public static void loadDataToDataStore(String userDataPath, String messagesPath) {
 		//write users data into userData.txt
 		try{
-		    FileOutputStream writeData = new FileOutputStream("src/msgApp/data/userData.txt");
+		    FileOutputStream writeData = new FileOutputStream(userDataPath);
 		    ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
 
 		    writeStream.writeObject(users);
@@ -69,7 +77,7 @@ public class App {
 		
 		//write message data into messages.txt
 		try{
-		    FileOutputStream writeData = new FileOutputStream("src/msgApp/data/messages.txt");
+		    FileOutputStream writeData = new FileOutputStream(messagesPath);
 		    ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
 
 		    writeStream.writeObject(allMessages);
