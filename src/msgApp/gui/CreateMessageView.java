@@ -36,15 +36,26 @@ public class CreateMessageView extends JFrame {
 		JButton addMessage = new JButton("Post Message");
 		addMessage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Create the message
 				Message m = new Message(messageBody.getText(), user.getUserName());
+				
+				//add the message to the current user
 				user.addMessage(m);
+				
+				//add the message to the message list in the data store
 				App.addMessageToAllMessagesList(m);
+				
+				//update the user with the newly added message to the data store
 				ArrayList<User> users = App.getUsers();
 				User curr;
 				for(int i = 0; i < users.size(); i++) {
 					curr = users.get(i);
 					if(curr.equals(user)) {
 						App.setUser(i, curr);
+						
+						//load the data to the datastore
+						App.loadDataToDataStore("src/msgApp/data/userData.txt", "src/msgApp/data/messages.txt");
+						
 						ViewControler.showAccountLoggedInView(user);
 					}
 				}

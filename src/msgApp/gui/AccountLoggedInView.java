@@ -23,8 +23,12 @@ public class AccountLoggedInView extends JFrame {
 	
 	private User currUser;
 	
+	private JTextArea feed;
+	
 	public AccountLoggedInView(User user) {
+		//sets the current user
 		this.currUser = user;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -35,11 +39,9 @@ public class AccountLoggedInView extends JFrame {
 		welcomeLabel.setBounds(10, 11, 414, 14);
 		contentPane.add(welcomeLabel);
 		welcomeLabel.setText("Welcome back " + currUser.getUserName());
-		
 		JButton logoutButton = new JButton("Logout");
 		logoutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				/*loop through the users in App.java and find the current user that is logged in and log them out
 				 * This should be refactored into a single function call from App.java that passes in the user object
 				 */
@@ -53,13 +55,12 @@ public class AccountLoggedInView extends JFrame {
 						ViewControler.showLoginView();
 					}
 				}
-				App.loadDataToDataStore("src/msgApp/data/userData.txt", "src/msgApp/data/messages.txt");
 			}
 		});
 		logoutButton.setBounds(10, 227, 89, 23);
 		contentPane.add(logoutButton);
 		
-		JTextArea feed = new JTextArea();
+		feed = new JTextArea();
 		feed.setEditable(false);
 		feed.setBounds(10, 36, 414, 171);
 		contentPane.add(feed);
@@ -73,9 +74,9 @@ public class AccountLoggedInView extends JFrame {
 		JButton createMessage = new JButton("Add Message");
 		createMessage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewControler.showCreateMessageView(user);
 				//reset feed text so the feed is not duplicated
-				feed.setText("");
+				feed.setText("");				
+				ViewControler.showCreateMessageView(user);
 			}
 		});
 		createMessage.setBounds(275, 227, 137, 23);

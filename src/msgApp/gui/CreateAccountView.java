@@ -60,6 +60,10 @@ public class CreateAccountView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				User newUser = new User(username.getText(), password.getText());
 				App.addUser(newUser);
+				
+				//load the data to the datastore
+				App.loadDataToDataStore("src/msgApp/data/userData.txt", "src/msgApp/data/messages.txt");
+				
 				ViewControler.showLoginView();
 			}
 		});
